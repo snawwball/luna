@@ -6,7 +6,7 @@
     <title>The Fox and the Wolves</title>
     <style>
         body {
-            background: url('photo1.png') center center / cover no-repeat, black;
+            background-color: black; /* Fallback for no image */
             color: red;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
@@ -17,24 +17,168 @@
             min-height: 100vh;
             margin: 0;
             padding: 20px;
-            overflow-y: auto;
-            box-sizing: border-box;
+            overflow: hidden;
+            position: relative;
         }
-        /* Disable pseudo-elements and overlays temporarily */
+
+        /* Glitchy and glowing background */
+        body::before {
+            content: "";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 40vw; /* Shrink to 60% smaller */
+            height: 40vw; /* Maintain aspect ratio */
+            transform: translate(-50%, -50%);
+            background: url('photo1.png') center center / contain no-repeat;
+            filter: brightness(0.6) blur(2px);
+            animation: pulse-glow 3s infinite alternate, glitch 0.5s infinite;
+            z-index: -2; /* Ensure it remains in the background */
+        }
+
+        /* Dark overlay */
+        body::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7); /* Dark overlay */
+            z-index: -1;
+        }
+
+        /* Fancy Text Styles */
+        .title {
+            font-size: 2em;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            text-shadow: 0 0 15px red, 0 0 25px red, 0 0 40px red;
+            animation: pulse-glow-text 2s infinite alternate;
+            margin-bottom: 20px;
+        }
+
+        .warning {
+            font-size: 1.2em;
+            text-transform: uppercase;
+            animation: intense-flicker 0.7s infinite;
+        }
+
+        .decorated {
+            font-size: 1.2em;
+            margin: 30px 0;
+            display: inline-block;
+            position: relative;
+            animation: decorated-glow 3s infinite;
+        }
+
+        .game-rules {
+            font-size: 1em;
+            margin: 0 10px;
+            line-height: 1.6;
+            animation: pulse-text 3s infinite;
+        }
+
+        /* Glitch Animation */
+        @keyframes glitch {
+            0% {
+                clip-path: inset(0 0 30% 0);
+                transform: translate(2px, 0);
+            }
+            20% {
+                clip-path: inset(20% 0 50% 0);
+                transform: translate(-2px, -2px);
+            }
+            40% {
+                clip-path: inset(0 0 10% 0);
+                transform: translate(2px, -1px);
+            }
+            60% {
+                clip-path: inset(10% 0 40% 0);
+                transform: translate(0, 2px);
+            }
+            80% {
+                clip-path: inset(30% 0 20% 0);
+                transform: translate(2px, 0);
+            }
+            100% {
+                clip-path: inset(0 0 30% 0);
+                transform: translate(-2px, 0);
+            }
+        }
+
+        /* Pulse Glow Animation */
+        @keyframes pulse-glow {
+            0% {
+                filter: brightness(0.8) blur(2px);
+                box-shadow: 0 0 20px red, 0 0 40px crimson;
+            }
+            100% {
+                filter: brightness(1.4) blur(4px);
+                box-shadow: 0 0 40px crimson, 0 0 80px red;
+            }
+        }
+
+        /* Fancy Text Animations */
+        @keyframes pulse-glow-text {
+            0% {
+                text-shadow: 0 0 15px red, 0 0 25px red, 0 0 40px red;
+            }
+            100% {
+                text-shadow: 0 0 30px crimson, 0 0 50px crimson, 0 0 80px red;
+            }
+        }
+
+        @keyframes intense-flicker {
+            0%, 100% { opacity: 1; }
+            10% { opacity: 0.5; }
+            50% { opacity: 0.3; }
+            80% { opacity: 0.8; }
+        }
+
+        @keyframes decorated-glow {
+            0%, 100% { color: red; }
+            50% { color: crimson; }
+        }
+
+        @keyframes pulse-text {
+            0%, 100% { color: red; }
+            50% { color: darkred; }
+        }
+
+        /* Responsive Scaling */
+        @media screen and (max-width: 600px) {
+            body::before {
+                width: 60vw;
+                height: 60vw;
+            }
+            .title {
+                font-size: 1.5em;
+            }
+            .warning {
+                font-size: 1em;
+            }
+            .game-rules {
+                font-size: 0.9em;
+            }
+            .decorated {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
     <div class="title">If you're on this page, that means Luna chose you.</div>
     <div class="warning">☨ I don't care the reason or who you are, ☨</div>
-    <div class="warning rotated">another ritual is waiting for you. ⛧</div>
+    <div class="warning decorated">another ritual is waiting for you. ⛧</div>
     <div class="decorated">The Fox and the Wolves</div>
     <div class="game-rules">
         <p>The rules are simple. You'll need these items:</p>
         <p class="item">1. Flour, chalk powder, or anything else to mark places.</p>
         <p class="item">2. Some friends.</p>
         <p>
-            Someone in your friend group has to be the <span class="scaled">fox</span>, 
-            and the rest will be <span class="rotated">wolves</span>. 
+            Someone in your friend group has to be the <span class="decorated">fox</span>, 
+            and the rest will be <span class="decorated">wolves</span>. 
             You are the one Luna chose, so you will be the fox. 
         </p>
         <p>The fox gets a head start of 1 minute. Run as far as you can, marking your route with powder or chalk. Wolves will chase you by following the trail.</p>
