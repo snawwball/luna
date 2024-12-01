@@ -6,8 +6,7 @@
     <title>The Fox and the Wolves</title>
     <style>
         body {
-            background: url('photo1.png') center center / cover no-repeat, black; /* Background image with fallback to black */
-            background-blend-mode: overlay; /* Blend the image with black for a faded effect */
+            background-color: black; /* Fallback background color */
             color: red;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
@@ -39,7 +38,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: repeating-linear-gradient(transparent, rgba(0, 0, 0, 0.1) 1px, transparent 2px);
+            background: repeating-linear-gradient(transparent, rgba(0, 0, 0, 0.2) 1px, transparent 2px);
             opacity: 0.1; /* Subtle noise overlay */
             z-index: -1;
             pointer-events: none; /* Allow interaction with elements above */
