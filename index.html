@@ -14,22 +14,23 @@
             align-items: center;
             flex-direction: column;
             text-align: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
-            overflow: hidden;
-            padding: 10px;
-            box-sizing: border-box;
+            padding: 20px; /* Padding ensures spacing around edges */
+            overflow-y: auto; /* Enable scrolling for overflowing content */
+            box-sizing: border-box; /* Include padding and border in width/height */
         }
         .title {
-            font-size: 2em; /* Reduced for smaller screens */
+            font-size: 2em; /* Reduced size for better scaling on mobile */
             text-transform: uppercase;
             letter-spacing: 0.15em;
             text-shadow: 0 0 15px red, 0 0 25px red, 0 0 40px red;
             animation: pulse-glow 2s infinite alternate;
+            margin-bottom: 20px;
         }
         .warning {
-            font-size: 1.2em; /* Adjusted for mobile */
-            margin: 15px 0;
+            font-size: 1.2em; /* Adjusted for mobile readability */
+            margin: 20px 0;
             text-transform: uppercase;
             animation: intense-flicker 0.7s infinite;
         }
@@ -48,11 +49,10 @@
             80% { opacity: 0.8; }
         }
         .game-rules {
-            font-size: 1em; /* Adjusted for readability */
+            font-size: 1em; /* Smaller font for better scaling */
             margin: 0 10px;
-            line-height: 1.6; /* Slightly increased line spacing */
+            line-height: 1.6;
             animation: pulse-text 3s infinite;
-            text-align: left; /* Improved readability for smaller devices */
         }
         @keyframes pulse-text {
             0%, 100% { color: red; }
@@ -68,15 +68,15 @@
             50% { opacity: 0.8; }
         }
         .rotated {
-            transform: rotate(-10deg); /* Adjusted angle for small screens */
+            transform: rotate(-15deg);
             display: inline-block;
-            margin: 0 3px;
+            margin: 0 5px;
             text-shadow: 0 0 10px darkred;
         }
         .scaled {
-            font-size: 1.5em; /* Slightly smaller for better spacing */
+            font-size: 1.4em; /* Adjusted for mobile */
             display: inline-block;
-            margin: 0 3px;
+            margin: 0 5px;
             animation: scale-glow 2s infinite alternate;
         }
         @keyframes scale-glow {
@@ -90,8 +90,8 @@
             }
         }
         .decorated {
-            font-size: 1.2em; /* Adjusted for mobile */
-            margin: 20px 0;
+            font-size: 1.2em; /* Adjusted for smaller screens */
+            margin: 30px 0;
             display: inline-block;
             position: relative;
             animation: decorated-glow 3s infinite;
@@ -118,16 +118,22 @@
             color: crimson;
             opacity: 0.9;
         }
-        /* Additional responsiveness for very small screens */
-        @media (max-width: 480px) {
+        /* Ensure responsive scaling */
+        @media screen and (max-width: 600px) {
             .title {
-                font-size: 1.8em;
+                font-size: 1.5em;
             }
             .warning {
                 font-size: 1em;
             }
             .game-rules {
                 font-size: 0.9em;
+            }
+            .decorated {
+                font-size: 1em;
+            }
+            .scaled {
+                font-size: 1.2em;
             }
         }
     </style>
