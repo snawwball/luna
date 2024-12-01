@@ -6,7 +6,7 @@
     <title>The Fox and the Wolves</title>
     <style>
         body {
-            background-color: black; /* Fallback background color */
+            background: url('photo1.png') center center / cover no-repeat, black;
             color: red;
             font-family: 'Courier New', Courier, monospace;
             display: flex;
@@ -16,149 +16,11 @@
             text-align: center;
             min-height: 100vh;
             margin: 0;
-            padding: 20px; /* Padding ensures spacing around edges */
-            overflow-y: auto; /* Enable scrolling for overflowing content */
-            box-sizing: border-box; /* Include padding and border in width/height */
+            padding: 20px;
+            overflow-y: auto;
+            box-sizing: border-box;
         }
-        body::before {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('photo1.png') center center / cover no-repeat;
-            filter: blur(5px) brightness(0.7) contrast(1.2) opacity(0.7); /* Apply blur, brightness, contrast, and opacity */
-            z-index: -2; /* Ensure it's behind everything */
-        }
-        body::after {
-            content: "";
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: repeating-linear-gradient(transparent, rgba(0, 0, 0, 0.2) 1px, transparent 2px);
-            opacity: 0.1; /* Subtle noise overlay */
-            z-index: -1;
-            pointer-events: none; /* Allow interaction with elements above */
-        }
-        .title {
-            font-size: 2em; /* Reduced size for better scaling on mobile */
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            text-shadow: 0 0 15px red, 0 0 25px red, 0 0 40px red;
-            animation: pulse-glow 2s infinite alternate;
-            margin-bottom: 20px;
-        }
-        .warning {
-            font-size: 1.2em; /* Adjusted for mobile readability */
-            margin: 20px 0;
-            text-transform: uppercase;
-            animation: intense-flicker 0.7s infinite;
-        }
-        @keyframes pulse-glow {
-            0% {
-                text-shadow: 0 0 15px red, 0 0 25px red, 0 0 40px red;
-            }
-            100% {
-                text-shadow: 0 0 30px red, 0 0 50px red, 0 0 80px red;
-            }
-        }
-        @keyframes intense-flicker {
-            0%, 100% { opacity: 1; }
-            10% { opacity: 0.5; }
-            50% { opacity: 0.3; }
-            80% { opacity: 0.8; }
-        }
-        .game-rules {
-            font-size: 1em; /* Smaller font for better scaling */
-            margin: 0 10px;
-            line-height: 1.6;
-            animation: pulse-text 3s infinite;
-        }
-        @keyframes pulse-text {
-            0%, 100% { color: red; }
-            50% { color: darkred; }
-        }
-        .game-rules .item {
-            margin: 10px 0;
-            text-align: left;
-            animation: subtle-flicker 1.5s infinite;
-        }
-        @keyframes subtle-flicker {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.8; }
-        }
-        .rotated {
-            transform: rotate(-15deg);
-            display: inline-block;
-            margin: 0 5px;
-            text-shadow: 0 0 10px darkred;
-        }
-        .scaled {
-            font-size: 1.4em; /* Adjusted for mobile */
-            display: inline-block;
-            margin: 0 5px;
-            animation: scale-glow 2s infinite alternate;
-        }
-        @keyframes scale-glow {
-            0% {
-                transform: scale(1);
-                text-shadow: 0 0 10px red;
-            }
-            100% {
-                transform: scale(1.2);
-                text-shadow: 0 0 20px red;
-            }
-        }
-        .decorated {
-            font-size: 1.2em; /* Adjusted for smaller screens */
-            margin: 30px 0;
-            display: inline-block;
-            position: relative;
-            animation: decorated-glow 3s infinite;
-        }
-        @keyframes decorated-glow {
-            0%, 100% { color: red; }
-            50% { color: crimson; }
-        }
-        .decorated::before {
-            content: "✟ ✟ ✟";
-            position: absolute;
-            top: -20px;
-            left: -20px;
-            font-size: 1em;
-            color: crimson;
-            opacity: 0.9;
-        }
-        .decorated::after {
-            content: "✟ ✟ ✟";
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            font-size: 1em;
-            color: crimson;
-            opacity: 0.9;
-        }
-        /* Ensure responsive scaling */
-        @media screen and (max-width: 600px) {
-            .title {
-                font-size: 1.5em;
-            }
-            .warning {
-                font-size: 1em;
-            }
-            .game-rules {
-                font-size: 0.9em;
-            }
-            .decorated {
-                font-size: 1em;
-            }
-            .scaled {
-                font-size: 1.2em;
-            }
-        }
+        /* Disable pseudo-elements and overlays temporarily */
     </style>
 </head>
 <body>
